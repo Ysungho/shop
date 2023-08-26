@@ -41,3 +41,12 @@ public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredi
     List<Item> findByItemDetailByNative(@Param("itemDetail") String itemDetail);
 
 }
+
+/*
+JpaRepository를 상속받는 ItemRepository입니다.
+
+JpaRepository는 2개의 제네릭 타입을 사용하는데 첫 번째에는 엔티티 타입 클래스를 넣어주고, 두번째는 기본키 타입을 넣어줍니다.
+
+Item 클래스는 기본 키 타입이 Long이므로 Long을 넣어줍니다.
+
+JpaRepository는 기본적인 CRUD 및 페이징 처리를 위한 메소드가 정의돼 있습니다.*/
