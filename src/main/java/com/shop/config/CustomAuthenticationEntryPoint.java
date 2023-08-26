@@ -16,3 +16,6 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     }
 
 }
+
+/*ajax의 경우 http request header에 의해 XMLHttpRequest 라는 값이 세팅되어 요청이 오는데,
+인증이 되지 않은 사용자가 ajax로 리소스를 요청할 경우  “Unauthorized”에러를 발생시키고 나머지 경우는 로그인 페이지로 리다이렉트 시킴*/

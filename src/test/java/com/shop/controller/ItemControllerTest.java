@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@TestPropertySource(locations="classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 class ItemControllerTest {
 
     @Autowired
@@ -23,19 +23,20 @@ class ItemControllerTest {
 
     @Test
     @DisplayName("상품 등록 페이지 권한 테스트")
+    //현재 회원의 이름이 admin 이고 role이 ADMIN인 유저가 로그인된 상태로 테스트를 할 수 있도록 해주는 어노테이션
     @WithMockUser(username = "admin", roles = "ADMIN")
-    public void itemFormTest() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/admin/item/new"))
-                .andDo(print())
-                .andExpect(status().isOk());
+    public void itemFormTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/admin/item/new"))//상품 등록 페이지에 get요청을 보냄
+                .andDo(print()) // 요청과 응답 메시지를 확인 할 수 있도록 콘솔창에 출력
+                .andExpect(status().isOk()); // 응답상태 코드가 정상인지 확인
     }
 
     @Test
     @DisplayName("상품 등록 페이지 일반 회원 접근 테스트")
-    @WithMockUser(username = "user", roles = "USER")
-    public void itemFormNotAdminTest() throws Exception{
+    @WithMockUser(username = "user", roles = "USER")// 현재 인증된 사용지의 Role USER로 세팅
+    public void itemFormNotAdminTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/admin/item/new"))
                 .andDo(print())
-                .andExpect(status().isForbidden());
+                .andExpect(status().isForbidden());//상품 등록 페이지 진입 요청 시 Forbidden 예외가 발생하면서 성공적으로 통과
     }
 }

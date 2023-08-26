@@ -8,13 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 
 @SpringBootTest
 @Transactional
-@TestPropertySource(locations="classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class MemberTest {
 
     @Autowired
@@ -25,8 +26,11 @@ public class MemberTest {
 
     @Test
     @DisplayName("Auditing 테스트")
+
+    //스프링 시큐리티에서 제공하는 어노테이션으로 @WithMockUser에 지정한 사용자가 로그인한 상태라고 가정하고 테스트를 진행할 수 있음.
     @WithMockUser(username = "gildong", roles = "USER")
-    public void auditingTest(){
+
+    public void auditingTest() {
         Member newMember = new Member();
         memberRepository.save(newMember);
 

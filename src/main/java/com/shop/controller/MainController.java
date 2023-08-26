@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+//회원 가입 후 메인 페이지로 갈 수 있도록 하는 MainController.java 소스
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

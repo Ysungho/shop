@@ -1,3 +1,4 @@
+//주문 영속성 전이 테스트
 package com.shop.repository;
 
 import com.shop.entity.Order;
@@ -15,10 +16,12 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "where o.member.email = :email " +
             "order by o.orderDate desc"
     )
+        //현재 로그인한 사용자의 주문 데이터를 페이징 조건에 맞춰서 조회합니다.
     List<Order> findOrders(@Param("email") String email, Pageable pageable);
 
     @Query("select count(o) from Order o " +
             "where o.member.email = :email"
     )
+        //현재 로그인한 회원의 주문 개수가 몇개인지 조회합니다.
     Long countOrder(@Param("email") String email);
 }

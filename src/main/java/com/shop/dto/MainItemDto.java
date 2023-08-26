@@ -4,7 +4,8 @@ import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class MainItemDto {
 
     private Long id;
@@ -17,8 +18,10 @@ public class MainItemDto {
 
     private Integer price;
 
+    //↓ 생성자에 @QueryProjection 어노테이션 선언
+    //↓ Querydsl 결과 조회 시 MainItemDto 객체로 바로 받아오도록 사용
     @QueryProjection
-    public MainItemDto(Long id, String itemNm, String itemDetail, String imgUrl,Integer price){
+    public MainItemDto(Long id, String itemNm, String itemDetail, String imgUrl, Integer price) {
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
